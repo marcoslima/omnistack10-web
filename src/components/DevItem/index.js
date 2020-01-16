@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import './styles.css';
 
 function DevItem(props) {
@@ -18,5 +19,9 @@ function DevItem(props) {
 
   );
 }
+DevItem.propTypes = {
+  dev: PropTypes.object.isRequired,
+  key: PropTypes.number.isRequired
+};
 
 export default DevItem;
