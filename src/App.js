@@ -10,25 +10,21 @@ import "./App.css";
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      devs: []
-    }
-  }
+  state = {
+    devs: []
+  };
 
   componentDidMount() {
     api.get('/devs')
       .then(response => {
-        this.setState({devs: response.data})
-      })
+        this.setState({ devs: response.data });
+      });
   }
 
   handleAddDev(data) {
     api.post('/devs', data)
       .then(response => {
-        this.setState({devs: [...this.state.devs, response.data]})
+        this.setState({ devs: [...this.state.devs, response.data] });
       });
   }
 
