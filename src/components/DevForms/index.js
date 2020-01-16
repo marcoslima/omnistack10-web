@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import FormField from "../FormField";
+import "./styles.css";
 
 class DevForm extends React.Component {
   state = {
@@ -37,31 +39,15 @@ class DevForm extends React.Component {
 
   render() {
     const { github_username, techs, latitude, longitude } = this.state;
-
+    const hc = this.handleChange.bind(this);
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
-        <div className="input-block">
-          <label htmlFor="github_username">Usuário do Github</label>
-          <input name="github_username" id="github_username" value={github_username} required
-                 onChange={this.handleChange.bind(this)}/>
-        </div>
-        <div className="input-block">
-          <label htmlFor="techs">Tecnologias</label>
-          <input name="techs" id="techs" value={techs} required
-                 onChange={this.handleChange.bind(this)}/>
-        </div>
+        <FormField label='Usuário do Github' name='github_username' value={github_username} onChange={hc} required={true}/>
+        <FormField label='Tecnologias' name='techs' value={techs} onChange={hc} required={true}/>
 
         <div className="input-group">
-          <div className="input-block">
-            <label htmlFor="latitude">Latitude</label>
-            <input type="number" name="latitude" id="latitude" value={latitude} required
-                   onChange={this.handleChange.bind(this)}/>
-          </div>
-          <div className="input-block">
-            <label htmlFor="longitude">Longitude</label>
-            <input type="number" name="longitude" id="longitude" value={longitude} required
-                   onChange={this.handleChange.bind(this)}/>
-          </div>
+          <FormField label='Latitude' name={'latitude'} value={latitude} onChange={hc} required={true} type='number'/>
+          <FormField label='Longitude' name={'longitude'} value={longitude} onChange={hc} required={true} type='number'/>
         </div>
         <button type='submit'>Salvar</button>
       </form>
